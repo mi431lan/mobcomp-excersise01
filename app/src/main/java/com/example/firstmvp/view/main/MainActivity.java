@@ -88,9 +88,13 @@ public class MainActivity extends AppCompatActivity implements UserPresenter.Vie
     }
 
     @Override
-    public void updateUserInfoTextView(String info) {
+    public void updateUserName(String info) {
         userName.setText(info);
-        userEmail.setText(info);
-
     }
+
+    @Override
+    public void updateUserEmail(String info) {
+        userEmail.setText(info);
+    }
+
 }
