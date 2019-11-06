@@ -1,13 +1,11 @@
-package com.example.firstmvp.presenter;
+package com.example.firstmvp.presenter.user;
 
-import com.example.firstmvp.model.Database;
-import com.example.firstmvp.model.DatabaseA1;
-import com.example.firstmvp.model.User;
+import com.example.firstmvp.model.user.User;
 
 public class UserPresenter {
 
-    User user;
-    View view;
+    private User user;
+    private View view;
 
 
     public UserPresenter(View view) {
@@ -17,12 +15,12 @@ public class UserPresenter {
 
     public void updateFullName(String fullName) {
         user.setFullName(fullName);
-        view.updateUserInfoTextView(user.toString());
+        view.updateUserInfoTextView(user.getFullName());
     }
 
     public void updateEmail(String email) {
         user.setEmail(email);
-        view.updateUserInfoTextView(user.toString());
+        view.updateUserInfoTextView(user.getEmail());
     }
 
 
