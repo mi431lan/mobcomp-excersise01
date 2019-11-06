@@ -13,13 +13,11 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String toStrsing() {
-        return "FullName : " + fullName + "\nEmail : " + email;
+    public String getFullName() {
+        return "FullName: " + fullName;
     }
-    public String getFullName(){
-        return "FullName: "+fullName;
-    }
-    public String getEmail(){
-        return "Email: "+email;
+
+    public String getEmail() {
+        return "Email: " + email;
     }
 }
