@@ -10,21 +10,24 @@ public class UserPresenter {
 
     public UserPresenter(View view) {
         this.view = view;
-        user  = new User();
+        user = new User();
     }
 
     public void updateFullName(String fullName) {
         user.setFullName(fullName);
-        view.updateUserInfoTextView(user.getFullName());
+        view.updateUserName(user.getFullName());
     }
 
     public void updateEmail(String email) {
         user.setEmail(email);
-        view.updateUserInfoTextView(user.getEmail());
+        view.updateUserEmail(user.getEmail());
     }
 
 
     public interface View {
-        void updateUserInfoTextView(String info);
+        void updateUserName(String info);
+
+        void updateUserEmail(String info);
+
     }
 }
