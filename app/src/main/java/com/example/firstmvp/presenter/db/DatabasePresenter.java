@@ -1,27 +1,32 @@
-package com.example.firstmvp.presenter;
+package com.example.firstmvp.presenter.db;
 
-import com.example.firstmvp.model.Database;
-import com.example.firstmvp.model.DatabaseA1;
+import com.example.firstmvp.model.db.Database;
+import com.example.firstmvp.model.db.DatabaseA1;
 
 public class DatabasePresenter {
 
-    Database database;
-    View view;
+    private static final String TAG = "DatabasePresenter";
 
-    public DatabasePresenter(View view){
+    private Database database;
+    private View view;
+
+    public DatabasePresenter(View view,Database database) {
         this.view = view;
-        this.database=new DatabaseA1();
+        this.database =database;
 
     }
 
-    public void saveUser(String user){
+    public void saveUser(String user) {
         database.saveUser(user);
+
     }
-    public void loadUser(String user){
+
+    public void loadUser(String user) {
         database.loadUser(user);
     }
 
 
-    public interface View{}
+    public interface View {
+    }
 
 }
