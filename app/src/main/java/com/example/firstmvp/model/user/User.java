@@ -1,4 +1,4 @@
-package com.example.firstmvp.model;
+package com.example.firstmvp.model.user;
 
 public class User {
 
@@ -13,8 +13,13 @@ public class User {
         this.fullName = fullName;
     }
 
-    @Override
-    public String toString() {
+    public String toStrsing() {
         return "FullName : " + fullName + "\nEmail : " + email;
+    }
+    public String getFullName(){
+        return "FullName: "+fullName;
+    }
+    public String getEmail(){
+        return "Email: "+email;
     }
 }
