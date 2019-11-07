@@ -1,7 +1,6 @@
 package com.example.firstmvp.presenter.db;
 
 import com.example.firstmvp.model.db.Database;
-import com.example.firstmvp.model.db.DatabaseA1;
 
 public class DatabasePresenter {
 
@@ -16,13 +15,13 @@ public class DatabasePresenter {
 
     }
 
-    public void saveUser(String user) {
-        database.saveUser(user);
+    public void saveData(String data) {
+        database.saveData(data);
 
     }
 
-    public void loadUser(String user) {
-        database.loadUser(user);
+    public void loadData(String data) {
+        database.loadData(data);
     }
 
 

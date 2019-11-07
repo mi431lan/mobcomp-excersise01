@@ -2,7 +2,7 @@ package com.example.firstmvp.model.db;
 
 public interface Database {
 
-    void saveUser(String user);
+    void saveData(String user);
 
-    void loadUser(String name);
+    void loadData(String name);
 }
