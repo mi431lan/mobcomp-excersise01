@@ -7,3 +7,4 @@
 ### Use Case:
 ### Architecture:
 ### Why MVP:
+Classic MVC controller pattern highly depends on android apis, therefore its difficult to unit test. In MVP the presenter has no android api dependency and can be easily tested. Another alternative to MVC is MVVM. But MVP seems to be the beginner friendly pattern for the first app with a MVC archtiecture.
