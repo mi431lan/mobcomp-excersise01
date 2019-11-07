@@ -21,42 +21,50 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/userName"
+            android:id="@+id/formula"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="FullName:"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/userEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email:"
+            android:text="Formula: "
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/fullName"
+            android:id="@+id/weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Name"
-            android:inputType="textPersonName" />
+            android:hint="Weight"
+            android:inputType="numberDecimal" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Email"
-            android:inputType="textPersonName" />
+            android:hint="Height"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Age"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/activityLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Activity Level eg. 0,95 - 2,4"
+            android:inputType="numberDecimal" />
 
         <Button
-            android:id="@+id/buttonSave"
+            android:id="@+id/buttonCalculate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save" />
+            android:text="Calculate" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

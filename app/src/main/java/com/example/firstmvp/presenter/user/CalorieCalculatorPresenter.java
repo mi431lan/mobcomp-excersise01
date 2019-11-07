@@ -1,33 +1,45 @@
 package com.example.firstmvp.presenter.user;
 
-import com.example.firstmvp.model.user.User;
+import com.example.firstmvp.model.user.CalorieCalculator;
 
-public class UserPresenter {
+public class CalorieCalculatorPresenter {
 
-    private User user;
+    private CalorieCalculator calorieCalculator;
     private View view;
 
 
-    public UserPresenter(View view) {
+    public CalorieCalculatorPresenter(View view) {
         this.view = view;
-        user = new User();
+        calorieCalculator = new CalorieCalculator();
     }
 
-    public void updateFullName(String fullName) {
-        user.setFullName(fullName);
-        view.updateUserName(user.getFullName());
+    public void updateWeight(double weight) {
+        calorieCalculator.setWeight(weight);
+        view.updateFormula(calorieCalculator.toString());
     }
 
-    public void updateEmail(String email) {
-        user.setEmail(email);
-        view.updateUserEmail(user.getEmail());
+    public void updateHeight(double height) {
+        calorieCalculator.setHeight(height);
+        view.updateFormula(calorieCalculator.toString());
+    }
+
+    public void updateAge(double age) {
+        calorieCalculator.setAge(age);
+        view.updateFormula(calorieCalculator.toString());
+    }
+
+    public void updateActivityLevel(double activityLevel) {
+        calorieCalculator.setActivityLevel(activityLevel);
+        view.updateFormula(calorieCalculator.toString());
+    }
+    public double calculateCalories() {
+        return calorieCalculator.calculateCalories();
     }
 
 
     public interface View {
-        void updateUserName(String info);
+        void updateFormula(String info);
 
-        void updateUserEmail(String info);
 
     }
 }

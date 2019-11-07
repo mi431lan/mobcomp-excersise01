@@ -12,45 +12,49 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.firstmvp.R;
-import com.example.firstmvp.model.db.DatabaseA1;
+import com.example.firstmvp.model.db.DatabaseExampleImpl;
 import com.example.firstmvp.presenter.db.DatabasePresenter;
-import com.example.firstmvp.presenter.user.UserPresenter;
+import com.example.firstmvp.presenter.user.CalorieCalculatorPresenter;
 
-public class MainActivity extends AppCompatActivity implements UserPresenter.View, DatabasePresenter.View {
+public class MainActivity extends AppCompatActivity implements CalorieCalculatorPresenter.View, DatabasePresenter.View {
 
-    UserPresenter userPresenter;
+    CalorieCalculatorPresenter calorieCalculatorPresenter;
     DatabasePresenter databasePresenter;
 
-    TextView userName;
-    TextView userEmail;
+    TextView formula;
 
-    EditText fullName;
-    EditText email;
-    Button buttonSave;
+    EditText weight;
+    EditText height;
+    EditText age;
+    EditText activityLevel;
+
+    Button buttonCalculate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        userPresenter = new UserPresenter(this);
-        databasePresenter = new DatabasePresenter(this, new DatabaseA1());
+        calorieCalculatorPresenter = new CalorieCalculatorPresenter(this);
+        databasePresenter = new DatabasePresenter(this, new DatabaseExampleImpl());
 
-        userName = findViewById(R.id.userName);
-        userEmail = findViewById(R.id.userEmail);
+        formula = findViewById(R.id.formula);
 
-        fullName = findViewById(R.id.fullName);
-        email = findViewById(R.id.email);
-        buttonSave = findViewById(R.id.buttonSave);
+        weight = findViewById(R.id.weight);
+        height = findViewById(R.id.height);
+        age = findViewById(R.id.age);
+        activityLevel = findViewById(R.id.activityLevel);
 
-        fullName.addTextChangedListener(new TextWatcher() {
+        buttonCalculate = findViewById(R.id.buttonCalculate);
+
+        weight.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                userPresenter.updateFullName(s.toString());
+                calorieCalculatorPresenter.updateWeight(Double.parseDouble(s.toString()));
             }
 
             @Override
@@ -58,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements UserPresenter.Vie
             }
         });
 
-        email.addTextChangedListener(new TextWatcher() {
+        height.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -67,34 +71,68 @@ public class MainActivity extends AppCompatActivity implements UserPresenter.Vie
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                userPresenter.updateEmail(s.toString());
+                calorieCalculatorPresenter.updateHeight(Double.parseDouble(s.toString()));
             }
 
             @Override
             public void afterTextChanged(Editable s) {
             }
         });
+        age.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        buttonSave.setOnClickListener(new View.OnClickListener() {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calorieCalculatorPresenter.updateAge(Double.parseDouble(s.toString()));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        activityLevel.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calorieCalculatorPresenter.updateActivityLevel(Double.parseDouble(s.toString()));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        buttonCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (fullName.getText().length() > 0 && email.getText().length() > 0) {
-                    databasePresenter.saveUser(fullName.toString() + " " + email.toString());
+                if (weight.getText().length() > 0 &&
+                        height.getText().length() > 0 &&
+                        age.getText().length() > 0 &&
+                        activityLevel.getText().length() > 0) {
+                    double calorieWaste=calorieCalculatorPresenter.calculateCalories();
+                    databasePresenter.saveData(calorieWaste+"");
                 } else {
-                    Toast.makeText(getApplicationContext(), "Please enter email and name!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),
+                            "Please enter valid values!",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
     @Override
-    public void updateUserName(String info) {
-        userName.setText(info);
+    public void updateFormula(String info) {
+        formula.setText(info);
+
     }
 
-    @Override
-    public void updateUserEmail(String info) {
-        userEmail.setText(info);
-    }
 
 }
