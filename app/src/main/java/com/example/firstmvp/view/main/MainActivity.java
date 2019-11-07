@@ -2,6 +2,7 @@ package com.example.firstmvp.view.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,7 +15,8 @@ import android.widget.Toast;
 import com.example.firstmvp.R;
 import com.example.firstmvp.model.db.DatabaseExampleImpl;
 import com.example.firstmvp.presenter.db.DatabasePresenter;
-import com.example.firstmvp.presenter.user.CalorieCalculatorPresenter;
+import com.example.firstmvp.presenter.caloriecalculator.CalorieCalculatorPresenter;
+import com.example.firstmvp.view.caloriewastage.CalorieWastageActivity;
 
 public class MainActivity extends AppCompatActivity implements CalorieCalculatorPresenter.View, DatabasePresenter.View {
 
@@ -54,7 +56,8 @@ public class MainActivity extends AppCompatActivity implements CalorieCalculator
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                calorieCalculatorPresenter.updateWeight(Double.parseDouble(s.toString()));
+                if (s.length() > 0)
+                    calorieCalculatorPresenter.updateWeight(Double.parseDouble(s.toString()));
             }
 
             @Override
@@ -71,7 +74,8 @@ public class MainActivity extends AppCompatActivity implements CalorieCalculator
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                calorieCalculatorPresenter.updateHeight(Double.parseDouble(s.toString()));
+                if (s.length() > 0)
+                    calorieCalculatorPresenter.updateHeight(Double.parseDouble(s.toString()));
             }
 
             @Override
@@ -87,7 +91,8 @@ public class MainActivity extends AppCompatActivity implements CalorieCalculator
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                calorieCalculatorPresenter.updateAge(Double.parseDouble(s.toString()));
+                if (s.length() > 0)
+                    calorieCalculatorPresenter.updateAge(Double.parseDouble(s.toString()));
             }
 
             @Override
@@ -103,7 +108,8 @@ public class MainActivity extends AppCompatActivity implements CalorieCalculator
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                calorieCalculatorPresenter.updateActivityLevel(Double.parseDouble(s.toString()));
+                if (s.length() > 0)
+                    calorieCalculatorPresenter.updateActivityLevel(Double.parseDouble(s.toString()));
             }
 
             @Override
@@ -117,8 +123,12 @@ public class MainActivity extends AppCompatActivity implements CalorieCalculator
                         height.getText().length() > 0 &&
                         age.getText().length() > 0 &&
                         activityLevel.getText().length() > 0) {
-                    double calorieWaste=calorieCalculatorPresenter.calculateCalories();
-                    databasePresenter.saveData(calorieWaste+"");
+                    double calorieWaste = calorieCalculatorPresenter.calculateCalories();
+                    databasePresenter.saveData(calorieWaste + "");
+
+                    Intent intent = new Intent(getBaseContext(), CalorieWastageActivity.class);
+                    intent.putExtra("CALORIE_WASTAGE", calorieWaste + "");
+                    startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(),
                             "Please enter valid values!",

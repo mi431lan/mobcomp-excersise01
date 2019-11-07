@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Weight"
+            android:hint="Weight in kg"
             android:inputType="numberDecimal" />
 
         <EditText
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Height"
+            android:hint="Height in cm"
             android:inputType="numberDecimal" />
 
         <EditText
