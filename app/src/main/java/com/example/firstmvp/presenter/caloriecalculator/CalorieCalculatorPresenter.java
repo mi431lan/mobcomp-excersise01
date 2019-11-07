@@ -1,6 +1,6 @@
-package com.example.firstmvp.presenter.user;
+package com.example.firstmvp.presenter.caloriecalculator;
 
-import com.example.firstmvp.model.user.CalorieCalculator;
+import com.example.firstmvp.model.caloriecalculator.CalorieCalculator;
 
 public class CalorieCalculatorPresenter {
 

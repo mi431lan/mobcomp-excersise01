@@ -1,4 +1,4 @@
-package com.example.firstmvp.model.user;
+package com.example.firstmvp.model.caloriecalculator;
 
 import android.util.Log;
 
@@ -34,6 +34,6 @@ public class CalorieCalculator {
 
     @Override
     public String toString() {
-        return "((9.99 *" + weight + ") + (6.25 * " + height + ") -  (4,92 * " + age + ") + 5 ) * " + activityLevel;
+        return "Formula: ((9.99 *" + weight + ") + (6.25 * " + height + ") -  (4,92 * " + age + ") + 5 ) * " + activityLevel;
     }
 }
